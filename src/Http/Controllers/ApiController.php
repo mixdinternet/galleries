@@ -11,7 +11,6 @@ class ApiController extends Controller
     public function images()
     {
 
-        #return Finality::sort()->get()->pluck('id', 'name');
         return [];
     }
 
