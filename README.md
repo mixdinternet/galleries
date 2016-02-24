@@ -32,7 +32,8 @@ Open `config/app.php` then add
 ## Publishing the files
 
 ```
-$ php artisan vendor:publish --provider="Mixdinternet\Galleries\Providers\GalleriesServiceProvider"
+$ php artisan vendor:publish --provider="Mixdinternet\Galleries\Providers\GalleriesServiceProvider" --tag="migrations"
+$ php artisan vendor:publish --provider="Mixdinternet\Galleries\Providers\GalleriesServiceProvider" --tag="assets"
 ```
 
 ## Running migrations
