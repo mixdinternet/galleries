@@ -5,11 +5,9 @@ namespace Mixdinternet\Galleries;
 trait GalleriableTrait
 {
 
-    public static function boot()
+    public static function bootGalleriableTrait()
     {
-        parent::boot();
-
-        self::saving(function ($model) {
+        self::saved(function ($model) {
 
             # comunidade é foda
             # dica do @vinicius73
