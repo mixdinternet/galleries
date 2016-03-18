@@ -82,11 +82,17 @@ class Post extends Model implements GalleriableInterface
 ## Load the grid in your panel
 
 ```
-{!! Gallery::form($post [, customGalleryName]) !!}
+{!! Gallery::form($post, [customGalleryName]) !!}
 ```
 
 ## Lists all images from a model
 
 ```
 Post::first()->galleries([customGalleryName])->images();
+```
+
+## If you want to return the default gallery images
+
+```
+Post::first()->gallery->images();
 ```
