@@ -16,14 +16,20 @@ class GalleriesAdminController extends AdminController
         if ($request->hasFile('file')) {
             $file = $request->file('file');
 
+            $tmpPath = storage_path('cache/tmp');
+            $imagesPath = storage_path('cache/images');
+
+            @mkdir($tmpPath, 0775, true);
+            @mkdir($imagesPath, 0775, true);
+
             $fileInfo = pathinfo($file->getClientOriginalName());
             $fileName = str_slug(str_limit($fileInfo['filename'], 50, '') . '-' . rand(1, 999)) . '.' . $file->getClientOriginalExtension();
-            $file->move(storage_path('cache/tmp'), $fileName);
+            $file->move($tmpPath, $fileName);
 
             FolkloreImage::make(storage_path('cache/tmp') . '/' . $fileName, [
                 'width' => 1024,
                 'quality' => 90
-            ])->save(storage_path('cache/images') . '/' . $fileName);
+            ])->save($imagesPath . '/' . $fileName);
 
             return [
                 'status' => 'success'
