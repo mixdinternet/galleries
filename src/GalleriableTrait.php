@@ -45,13 +45,16 @@ trait GalleriableTrait
                         if (!file_exists($fullPath))
                             continue;
 
-                        $targetPath = public_path('media/gallery/') . $gallery->id;
+                        $md5 = md5($gallery->id);
+                        $subDir = substr($md5, 0, 2) . '/' . substr($md5, 2, 2) . '/' . substr($md5, 4, 2);
+
+                        $targetPath = public_path('media/gallery/') . $subDir;
                         @mkdir($targetPath, 0775, true);
 
                         rename($fullPath, $targetPath . '/' . $v);
 
                         $image = new Image();
-                        $image->name = '/media/gallery/' . $gallery->id . '/' . $v;
+                        $image->name = '/media/gallery/' . $subDir . '/' . $v;
                         $image->description = '';
                         $image->order = ($k + $count);
                         $image->gallery()->associate($gallery);
