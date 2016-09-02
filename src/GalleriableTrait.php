@@ -45,8 +45,7 @@ trait GalleriableTrait
                         if (!file_exists($fullPath))
                             continue;
 
-                        $md5 = md5($gallery->id);
-                        $subDir = substr($md5, 0, 2) . '/' . substr($md5, 2, 2) . '/' . substr($md5, 4, 2);
+                        $subDir = implode('/', str_split(substr(md5($gallery->id), 0, 6), 2));
 
                         $targetPath = public_path('media/gallery/') . $subDir;
                         @mkdir($targetPath, 0775, true);
