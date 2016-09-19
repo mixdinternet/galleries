@@ -81,7 +81,7 @@ trait GalleriableTrait
 
     public function flatGallery($name = 'images')
     {
-        $gallery = $this->galleries()->where('name', $name)->first();
+        $gallery = $this->galleries($name)->first();
         if (!$gallery) {
             return [];
         }
