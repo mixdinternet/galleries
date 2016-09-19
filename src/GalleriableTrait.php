@@ -69,12 +69,23 @@ trait GalleriableTrait
         return $this->morphMany('Mixdinternet\Galleries\Gallery', 'galleriable')->where('name', $name);
     }
 
-    public function gallery($name = 'images'){
+    public function gallery($name = 'images')
+    {
         return $this->galleries($name)->first();
     }
 
-    public function getGalleryAttribute(){
+    public function getGalleryAttribute()
+    {
         return $this->gallery();
-    }    
+    }
 
+    public function flatGallery($name = 'images')
+    {
+        $gallery = $this->galleries()->where('name', $name)->first();
+        if (!$gallery) {
+            return [];
+        }
+
+        return $gallery->images()->select('id', 'name', 'description', 'order')->get();
+    }
 }
