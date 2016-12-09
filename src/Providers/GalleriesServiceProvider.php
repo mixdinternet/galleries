@@ -35,6 +35,9 @@ class GalleriesServiceProvider extends ServiceProvider
             __DIR__ . '/../database/migrations' => base_path('database/migrations'),
         ], 'migrations');
 
+        $this->publishes([
+            __DIR__ . '/../config/mgalleries.php' => base_path('config/mgalleries.php'),
+        ], 'config');
     }
 
     /**

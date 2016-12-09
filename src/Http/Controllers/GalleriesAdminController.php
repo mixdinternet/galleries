@@ -31,6 +31,19 @@ class GalleriesAdminController extends AdminController
                 'quality' => 90
             ])->save($imagesPath . '/' . $fileName);
 
+            if(config('mgalleries.watermark')) {
+                $imagine = new \Imagine\Imagick\Imagine();
+                $watermark = $imagine->open(config('mgalleries.watermark'));
+                $image = $imagine->open($imagesPath . '/' . $fileName);
+                $size = $image->getSize();
+                $watermark->resize(new \Imagine\Image\Box($size->getWidth(), $size->getHeight()));
+                $wSize = $watermark->getSize();
+                $position = new \Imagine\Image\Point($size->getWidth() - $wSize->getWidth(), $size->getHeight() - $wSize->getHeight());
+
+                $image->paste($watermark, $position);
+                $image->save($imagesPath . '/' . $fileName);
+            }
+
             return [
                 'status' => 'success'
                 , 'name' => $fileName
