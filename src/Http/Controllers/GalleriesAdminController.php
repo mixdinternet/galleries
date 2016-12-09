@@ -27,8 +27,9 @@ class GalleriesAdminController extends AdminController
             $file->move($tmpPath, $fileName);
 
             FolkloreImage::make(storage_path('cache/tmp') . '/' . $fileName, [
-                'width' => 1024,
-                'quality' => 90
+                'width' => config('mgalleries.galleries.width', 800),
+                'height' => config('mgalleries.galleries.height', 600),
+                'quality' => config('mgalleries.galleries.quality', 90)
             ])->save($imagesPath . '/' . $fileName);
 
             if(config('mgalleries.watermark')) {
