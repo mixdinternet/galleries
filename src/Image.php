@@ -15,6 +15,6 @@ class Image extends Model
 
     public function gallery()
     {
-        return $this->belongsTo(Mixdinternet\Galleries\Gallery::class);
+        return $this->belongsTo(\Mixdinternet\Galleries\Gallery::class);
     }
 }

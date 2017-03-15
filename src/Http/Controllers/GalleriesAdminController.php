@@ -3,12 +3,12 @@
 namespace Mixdinternet\Galleries\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\AdminController;
+use Mixdinternet\Admix\Http\Controllers\AdmixController;
 use Folklore\Image\Facades\Image as FolkloreImage;
 use Mixdinternet\Galleries\Gallery;
 use Mixdinternet\Galleries\Image;
 
-class GalleriesAdminController extends AdminController
+class GalleriesAdminController extends AdmixController
 {
     public function upload(Request $request)
     {
@@ -25,7 +25,7 @@ class GalleriesAdminController extends AdminController
             $fileName = str_slug(str_limit($fileInfo['filename'], 50, '') . '-' . rand(1, 999)) . '.' . $file->getClientOriginalExtension();
             $file->move($tmpPath, $fileName);
 
-            $config = config('mgaleries.galleries');
+            $config = config('mgalleries.galleries');
             $default = [
                 'width' => 800
                 , 'height' => 600

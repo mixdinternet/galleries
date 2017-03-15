@@ -18,7 +18,7 @@ class Gallery extends Model
 
     public function images()
     {
-        return $this->hasMany(Mixdinternet\Galleries\Image::class)->orderBy('order', 'asc');
+        return $this->hasMany(\Mixdinternet\Galleries\Image::class)->orderBy('order', 'asc');
     }
 
     public function image()
