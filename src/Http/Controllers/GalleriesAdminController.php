@@ -10,7 +10,6 @@ use Mixdinternet\Galleries\Image;
 
 class GalleriesAdminController extends AdminController
 {
-
     public function upload(Request $request)
     {
         if ($request->hasFile('file')) {
@@ -26,10 +25,16 @@ class GalleriesAdminController extends AdminController
             $fileName = str_slug(str_limit($fileInfo['filename'], 50, '') . '-' . rand(1, 999)) . '.' . $file->getClientOriginalExtension();
             $file->move($tmpPath, $fileName);
 
+            $config = config('mgaleries.galleries');
+            $default = [
+                'width' => 800
+                , 'height' => 600
+                , 'quality' => 90
+            ];
+            $mergeConfig = array_merge($default, $config);
+
             FolkloreImage::make(storage_path('cache/tmp') . '/' . $fileName, [
-                'width' => config('mgalleries.galleries.width', 800),
-                'height' => config('mgalleries.galleries.height', 600),
-                'quality' => config('mgalleries.galleries.quality', 90)
+                $mergeConfig
             ])->save($imagesPath . '/' . $fileName);
 
             if(config('mgalleries.watermark')) {

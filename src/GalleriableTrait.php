@@ -4,17 +4,9 @@ namespace Mixdinternet\Galleries;
 
 trait GalleriableTrait
 {
-
     public static function bootGalleriableTrait()
     {
         self::saved(function ($model) {
-
-            # comunidade é foda
-            # dica do @vinicius73
-            /*if ($model->tenant_id != 0 && empty($model->tenant_id)) {
-                throw new \InvalidArgumentException(get_class($model).' need to be a valid tenant_id attribute');
-            }*/
-
             if (!request()->has('gallery')) {
                 return;
             }
@@ -66,7 +58,7 @@ trait GalleriableTrait
 
     public function galleries($name = 'images')
     {
-        return $this->morphMany('Mixdinternet\Galleries\Gallery', 'galleriable')->where('name', $name);
+        return $this->morphMany(Mixdinternet\Galleries\Gallery::class, 'galleriable')->where('name', $name);
     }
 
     public function gallery($name = 'images')

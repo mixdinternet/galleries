@@ -1,6 +1,7 @@
 <?php
 
 return [
+    #user galleries => [] para valores padrões
     'galleries' => [
         'width' => 1024
         , 'height' => 768

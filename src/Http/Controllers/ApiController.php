@@ -10,7 +10,6 @@ class ApiController extends Controller
 
     public function images()
     {
-
         return [];
     }
 
