@@ -7,7 +7,7 @@ Add to composer.json
 
 ```js
   "require": {
-    "mixdinternet/galleries": "0.1.*"
+    "mixdinternet/galleries": "0.2.*"
   }
 ```
 
@@ -32,7 +32,6 @@ Open `config/app.php` then add
 ## Publishing the files
 
 ```
-$ php artisan vendor:publish --provider="Mixdinternet\Galleries\Providers\GalleriesServiceProvider" --tag="migrations"
 $ php artisan vendor:publish --provider="Mixdinternet\Galleries\Providers\GalleriesServiceProvider" --tag="assets"
 $ php artisan vendor:publish --provider="Mixdinternet\Galleries\Providers\GalleriesServiceProvider" --tag="config"
 ```
