@@ -49,6 +49,7 @@ class GalleriesServiceProvider extends ServiceProvider
     protected function loadConfigs()
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/maudit.php', 'maudit.alias');
+        $this->mergeConfigFrom(__DIR__ . '/../config/mgalleries.php', 'mgalleries');
     }
 
     protected function publish()
