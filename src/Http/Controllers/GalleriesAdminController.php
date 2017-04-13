@@ -33,9 +33,7 @@ class GalleriesAdminController extends AdmixController
             ];
             $mergeConfig = array_merge($default, $config);
 
-            FolkloreImage::make(storage_path('cache/tmp') . '/' . $fileName, [
-                $mergeConfig
-            ])->save($imagesPath . '/' . $fileName);
+            FolkloreImage::make(storage_path('cache/tmp') . '/' . $fileName, $mergeConfig)->save($imagesPath . '/' . $fileName);
 
             if(config('mgalleries.watermark')) {
                 $imagine = new \Imagine\Imagick\Imagine();
