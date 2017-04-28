@@ -61,7 +61,10 @@ class GalleriesAdminController extends AdminController
         $images = $request->get('image');
 
         foreach ($images as $k => $v) {
-            Image::find($v)->update(['order' => $k]);
+            $image = Image::find($v);
+            if ($image) {
+                $image->update(['order' => $k]);
+            }
         }
     }
 
@@ -69,8 +72,12 @@ class GalleriesAdminController extends AdminController
     {
         $id = $request->get('id');
         $description = $request->get('description');
+        $image = Image::find($id);
 
-        Image::find($id)->update(['description' => $description]);
+        if ($image) {
+            $image->update(['description' => $description]);
+        }
+
     }
 
     public function destroy(Request $request)
