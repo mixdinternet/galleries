@@ -42,10 +42,16 @@ trait GalleriableTrait
                         $targetPath = public_path('media/gallery/') . $subDir;
                         @mkdir($targetPath, 0775, true);
 
-                        rename($fullPath, $targetPath . '/' . $v);
+                        $friendlyName = $v;
+                        if(method_exists($model, 'galleriableName')) {
+                            $extension = pathinfo($v, PATHINFO_EXTENSION);
+                            $friendlyName = uniqid(str_slug($model->galleriableName()) . '-') . '.' . $extension;
+                        }
+
+                        rename($fullPath, $targetPath . '/' . $friendlyName);
 
                         $image = new Image();
-                        $image->name = '/media/gallery/' . $subDir . '/' . $v;
+                        $image->name = '/media/gallery/' . $subDir . '/' . $friendlyName;
                         $image->description = '';
                         $image->order = ($k + $count);
                         $image->gallery()->associate($gallery);
