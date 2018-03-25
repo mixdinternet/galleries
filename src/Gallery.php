@@ -2,12 +2,17 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use SimpleSoftwareIO\Cache\Cacheable;
 
 class Gallery extends Model {
 
-	use SoftDeletes;
+	use SoftDeletes, Cacheable;
 
-	protected $fillable = ['name'];
+    protected $cacheBusting = true;
+
+    protected $fillable = [
+        'name'
+    ];
 
 	public function galleriable()
     {
